@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import style from './PlatformFilter.module.css';
 
 const PlatformFilter = (props) => {
 
@@ -7,12 +8,14 @@ const PlatformFilter = (props) => {
   }
 
   return (
-    <select onChange={(e)=>selectPlatform(e.target.value)}>
-      <option >Sélectionnez une console</option>
-      <option value="PlayStation">PlayStation</option>
-      <option value="Xbox">Xbox</option>
-      <option value="PC">PC</option>
-    </select>
+    <div>
+      <select onChange={(e) => selectPlatform(e.target.value)}>
+        <option value="" >Sélectionnez une console</option>
+        <option value="PlayStation">PlayStation</option>
+        <option value="Xbox">Xbox</option>
+        <option value="PC">PC</option>
+      </select>
+    </div>
   )
 }
 

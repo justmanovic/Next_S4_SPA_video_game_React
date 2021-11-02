@@ -1,0 +1,19 @@
+select {
+  margin-bottom: 3rem;
+  padding:0.5rem 2rem;
+  background-color: transparent;
+  border: 1px black solid;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: bold;
+  transition:0.25s all;
+}
+
+select:hover {
+  transform: translateY(-3px);
+}
+
+select:active {
+  transform: translateY(1px);
+
+}

@@ -13,10 +13,6 @@ function Details() {
   }, []);
 
   const urlTab = window.location.href.split("/");
-  const gameName = urlTab[urlTab.length - 2]
-    .split("-")
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join(" ");
   const gameId = urlTab[urlTab.length - 1];
 
   const fetchList = async () => {

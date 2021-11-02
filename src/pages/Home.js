@@ -15,7 +15,6 @@ function Home(props) {
     <>
       <TextIntro />
       <PlatformFilter setPlatform={props.setPlatform} />
-      {props.selectedPlatform && <h1>{props.selectedPlatform}</h1>}
       <div>
         {props.searchedGame ? (
           <p>
