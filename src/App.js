@@ -11,13 +11,19 @@ function App() {
     console.log("searched!");
   };
 
+  const submitHandler = () => {
+    // e.preventDefault();
+    console.log("form submitted");
+  };
+
   return (
-    <div>
+    <>
       <Router>
         <Header
           onSearch={searchHandler}
           searchedGame={searchedGame}
           setSearchedGame={setSearchedGame}
+          onSubmit={submitHandler}
         />
         <Switch>
           <Route path="/" exact>
@@ -28,7 +34,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </>
   );
 }
 

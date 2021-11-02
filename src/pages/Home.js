@@ -16,23 +16,31 @@ function Home(props) {
 
     const res = await fetch(finalURL);
     const data = await res.json();
-    setResults(results.concat(data.results));
+    setResults([...results, ...data.results]);
+
+    console.log(finalURL);
   };
 
   useEffect(() => {
-    console.log("use effect");
+    console.log("use effect démarrage");
+    fetchList(pageCount);
+  }, []);
+
+  useEffect(() => {
+    setResults([]);
+    console.log("use effect recherche");
     fetchList(pageCount, props.searchedGame);
   }, [props.searchedGame]);
 
   const loadMore = () => {
-    fetchList(pageCount + 1);
+    fetchList(pageCount + 1, props.searchedGame);
     setPageCount(pageCount + 1);
   };
 
   return (
     <>
       <TextIntro />
-      <div className={style.home}>Bienvenue sur la HOME !</div>
+      {/* <h1>{props.searchedGame}</h1> */}
       <div className={style["results-grid"]}>
         {results &&
           results.map((result) => (

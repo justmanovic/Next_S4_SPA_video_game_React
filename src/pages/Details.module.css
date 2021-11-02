@@ -1,0 +1,46 @@
+.details {
+  /* color: blue; */
+}
+
+.cover {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cover > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.4);
+  margin: 3rem 0;
+  border: 1px black solid;
+}
+
+.tag {
+  grid-column: 1 / 4;
+}
+
+.screenshots {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+}
+
+.screenshots>div {
+  width: 100%;
+  /* height: 10rem; */
+}
+
+.screenshots >div > img {
+  width: 100%;
+  object-fit: cover;
+}

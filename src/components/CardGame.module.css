@@ -1,10 +1,13 @@
 .card-game {
-  border: 2px salmon solid;
+  border: 1px black solid;
+  padding: 1rem;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.4);
+
 }
 
 .card-img {
-  width: 15rem;
-  height: 10rem;
+  width: 100%;
+  height: 15rem;
   overflow: hidden;
 }
 
@@ -12,4 +15,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
