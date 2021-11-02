@@ -11,32 +11,22 @@ function App() {
   const [pageCount, setPageCount] = useState(1);
 
   useEffect(() => {
-    // setResults([]);
+    setResults([]);
+    setPageCount(1);
     console.log("use effect recherche");
     console.log(searchedGame);
     fetchList(pageCount, searchedGame);
   }, [searchedGame]);
-
-  const searchHandler = () => {
-    fetchList(pageCount, searchedGame);
-    console.log("je rentre dans SEARCH HANDLER");
-  };
-
-  const submitHandler = () => {
-    console.log("form submitted");
-  };
 
   const fetchList = async (page, argument) => {
     let finalURL = `https://api.rawg.io/api/games?dates=2021-01-01,2021-12-31&key=${KEY}&page=${page}&page_size=9`;
     if (argument) {
       finalURL = `https://api.rawg.io/api/games?search=${argument}&search_precise=true&key=${KEY}&page=${page}&page_size=9`;
     }
-
     const res = await fetch(finalURL);
     const data = await res.json();
     setResults([...results, ...data.results]);
-    // console.log(finalURL);
-    // console.log(data.results);
+    // setResults(data.results);
   };
 
   return (
@@ -45,10 +35,9 @@ function App() {
         <Header
           results={results}
           setResults={setResults}
-          onSearch={searchHandler}
           searchedGame={searchedGame}
           setSearchedGame={setSearchedGame}
-          onSubmit={submitHandler}
+          // onSubmit={submitHandler}
           fetchList={fetchList}
         />
         <Switch>

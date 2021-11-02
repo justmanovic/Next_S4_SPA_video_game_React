@@ -8,3 +8,24 @@
   grid-template-columns: repeat(3,1fr);
   gap:1rem;
 }
+
+button {
+  align-self: center;
+  margin-bottom: 3rem;
+  padding:0.5rem 2rem;
+  background-color: transparent;
+  border: 1px black solid;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: bold;
+  transition:0.25s all;
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
+
+button:active {
+  transform: translateY(1px);
+
+}
