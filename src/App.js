@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const KEY = "ee16de9559db45799581e016de56efca";
 
 function App() {
@@ -10,12 +10,19 @@ function App() {
   const [results, setResults] = useState([]);
   const [pageCount, setPageCount] = useState(1);
 
+  useEffect(() => {
+    // setResults([]);
+    console.log("use effect recherche");
+    console.log(searchedGame);
+    fetchList(pageCount, searchedGame);
+  }, [searchedGame]);
+
   const searchHandler = () => {
-    console.log("searched!");
+    fetchList(pageCount, searchedGame);
+    console.log("je rentre dans SEARCH HANDLER");
   };
 
   const submitHandler = () => {
-    // e.preventDefault();
     console.log("form submitted");
   };
 
@@ -27,9 +34,9 @@ function App() {
 
     const res = await fetch(finalURL);
     const data = await res.json();
-    setResults(data.results);
-    console.log(finalURL);
-    console.log(data.results);
+    setResults([...results, ...data.results]);
+    // console.log(finalURL);
+    // console.log(data.results);
   };
 
   return (

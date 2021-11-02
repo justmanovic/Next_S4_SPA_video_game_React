@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Header.module.css";
 import { Link } from "react-router-dom";
 const KEY = "ee16de9559db45799581e016de56efca";
 
 function Header(props) {
-  const search = (e) => {
-    e.preventDefault();
-    if (e.target.value.length >= 4) {
-      props.onSearch();
-      props.setSearchedGame(e.target.value);
-    }
-  };
+  const [searchedItem, setSearchedItem] = useState("");
 
   const submit = (e) => {
-    // e.preventDefault();
-    props.setSearchedGame(e.target.value);
-    props.fetchList(1);
-    props.onSubmit();
+    e.preventDefault();
+    console.log("SUBMIT");
+    console.log(searchedItem);
+    props.setSearchedGame(searchedItem);
+  };
+
+  const searching = (e) => {
+    setSearchedItem(e.target.value);
   };
 
   return (
@@ -24,12 +22,13 @@ function Header(props) {
       <Link className={style.logo} to="/">
         The Hyper Progame
       </Link>
-      <form onSubmit={submit} action="/">
+      {/* <form onSubmit={submit} action="/"> */}
+      <form onSubmit={submit}>
         <input
-          onChange={search}
           type="text"
           className={style["search-bar"]}
           placeholder="Search a game"
+          onChange={searching}
         />
       </form>
     </header>

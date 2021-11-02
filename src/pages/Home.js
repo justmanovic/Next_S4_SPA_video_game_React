@@ -20,16 +20,12 @@ function Home(props) {
   //   console.log(finalURL);
   // };
 
-  useEffect(() => {
-    console.log("use effect démarrage");
-    props.fetchList(props.pageCount);
-  }, []);
-
   // useEffect(() => {
-  //   setResults([]);
-  //   console.log("use effect recherche");
-  //   fetchList(pageCount, props.searchedGame);
-  // }, [props.searchedGame]);
+  //   console.log("use effect démarrage");
+  //   props.fetchList(props.pageCount);
+  // }, []);
+
+
 
   const loadMore = () => {
     // fetchList(pageCount + 1, props.searchedGame);
