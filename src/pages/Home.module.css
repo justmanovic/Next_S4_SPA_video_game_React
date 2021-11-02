@@ -1,0 +1,10 @@
+.home {
+  background-color: lightcoral;
+}
+
+.results-grid {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:1rem;
+}
