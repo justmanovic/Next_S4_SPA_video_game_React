@@ -25,7 +25,7 @@ function App() {
     }
     const res = await fetch(finalURL);
     const data = await res.json();
-    setResults([...results, ...data.results]);
+    setResults((prev) => [...prev, ...data.results]);
     // setResults(data.results);
   };
 
