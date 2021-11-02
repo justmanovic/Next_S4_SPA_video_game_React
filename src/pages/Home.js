@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextIntro from "../components/TextIntro";
 import style from "./Home.module.css";
 import CardGame from "../components/CardGame";
+import PlatformFilter from "../components/PlatformFilter";
 const KEY = "ee16de9559db45799581e016de56efca";
 
 function Home(props) {
@@ -13,6 +14,8 @@ function Home(props) {
   return (
     <>
       <TextIntro />
+      <PlatformFilter setPlatform={props.setPlatform} />
+      {props.selectedPlatform && <h1>{props.selectedPlatform}</h1>}
       <div>
         {props.searchedGame ? (
           <p>
@@ -23,10 +26,14 @@ function Home(props) {
         )}
       </div>
       <div className={style["results-grid"]}>
-        {props.results &&
-          props.results.map((result) => (
-            <CardGame key={Math.random().toString()} game={result} />
-          ))}
+        {props.results && props.selectedPlatform !== "" &&
+          props.results.filter(result => result.parent_platforms.map(parent_platform => parent_platform.platform.name).includes(props.selectedPlatform) ).map(result => {
+            return <CardGame key={Math.random().toString()} game={result} />
+          })}
+        {props.results && props.selectedPlatform === "" &&
+          props.results.map(result => {
+            return <CardGame key={Math.random().toString()} game={result} />
+          })}
       </div>
       {props.pageCount < 3 && <button onClick={loadMore}>Load more</button>}
     </>

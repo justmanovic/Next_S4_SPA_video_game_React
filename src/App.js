@@ -9,6 +9,7 @@ function App() {
   const [searchedGame, setSearchedGame] = useState("");
   const [results, setResults] = useState([]);
   const [pageCount, setPageCount] = useState(1);
+  const [selectedPlatform, setPlatform] = useState("");
 
   useEffect(() => {
     setResults([]);
@@ -48,6 +49,8 @@ function App() {
               fetchList={fetchList}
               pageCount={pageCount}
               setPageCount={setPageCount}
+              setPlatform={setPlatform}
+              selectedPlatform={selectedPlatform}
             />
           </Route>
           <Route path="/details">
