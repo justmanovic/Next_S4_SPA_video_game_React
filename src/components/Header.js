@@ -20,9 +20,13 @@ function Header(props) {
     setSearchedItem(e.target.value);
   };
 
+  const resetSearch = () => {
+    props.setSearchedGame("");
+  };
+
   return (
     <header className={style.header}>
-      <Link className={style.logo} to="/">
+      <Link className={style.logo} to="/" onClick={resetSearch}>
         The Hyper Progame
       </Link>
       <form onSubmit={submit}>
