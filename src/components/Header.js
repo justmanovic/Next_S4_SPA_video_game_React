@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Header.module.css";
 import { Link } from "react-router-dom";
+const KEY = "ee16de9559db45799581e016de56efca";
 
 function Header(props) {
   const search = (e) => {
@@ -14,6 +15,7 @@ function Header(props) {
   const submit = (e) => {
     // e.preventDefault();
     props.setSearchedGame(e.target.value);
+    props.fetchList(1);
     props.onSubmit();
   };
 
