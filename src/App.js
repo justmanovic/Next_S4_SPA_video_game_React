@@ -38,8 +38,9 @@ function App() {
           setResults={setResults}
           searchedGame={searchedGame}
           setSearchedGame={setSearchedGame}
-          // onSubmit={submitHandler}
           fetchList={fetchList}
+          setPlatform={setPlatform}
+          selectedPlatform={selectedPlatform}
         />
         <Switch>
           <Route path="/" exact>

@@ -22,6 +22,7 @@ function Header(props) {
 
   const resetSearch = () => {
     props.setSearchedGame("");
+    props.setPlatform("");
   };
 
   return (

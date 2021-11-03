@@ -14,7 +14,10 @@ function Home(props) {
   return (
     <>
       <TextIntro />
-      <PlatformFilter setPlatform={props.setPlatform} />
+      <PlatformFilter
+        setPlatform={props.setPlatform}
+        selectedPlatform={props.selectedPlatform}
+      />
       <div>
         {props.searchedGame ? (
           <p>
@@ -25,14 +28,21 @@ function Home(props) {
         )}
       </div>
       <div className={style["results-grid"]}>
-        {props.results && props.selectedPlatform !== "" &&
-          props.results.filter(result => result.parent_platforms.map(parent_platform => parent_platform.platform.name).includes(props.selectedPlatform) ).map(result => {
-            return <CardGame key={Math.random().toString()} game={result} />
-          })}
-        {props.results && props.selectedPlatform === "" &&
-          props.results.map(result => {
-            return <CardGame key={Math.random().toString()} game={result} />
-          })}
+        {(props.results &&
+          props.selectedPlatform !== "" &&
+          props.results
+            .filter((result) =>
+              result.parent_platforms
+                .map((parent_platform) => parent_platform.platform.name)
+                .includes(props.selectedPlatform)
+            )
+            .map((result) => {
+              return <CardGame key={Math.random().toString()} game={result} />;
+            })) ||
+          (props.selectedPlatform === "" &&
+            props.results.map((result) => {
+              return <CardGame key={Math.random().toString()} game={result} />;
+            }))}
       </div>
       {props.pageCount < 3 && <button onClick={loadMore}>Load more</button>}
     </>
