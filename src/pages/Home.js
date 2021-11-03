@@ -1,50 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import TextIntro from "../components/TextIntro";
 import style from "./Home.module.css";
 import CardGame from "../components/CardGame";
 import PlatformFilter from "../components/PlatformFilter";
+import MyContext from "../Context";
 const KEY = "ee16de9559db45799581e016de56efca";
 
-function Home(props) {
+function Home() {
+  const ctx = useContext(MyContext);
   const loadMore = () => {
-    props.fetchList(props.pageCount + 1, props.searchedGame);
-    props.setPageCount(props.pageCount + 1);
+    ctx.fetchList(ctx.pageCount + 1, ctx.searchedGame);
+    ctx.setPageCount(ctx.pageCount + 1);
   };
 
   return (
     <>
       <TextIntro />
       <PlatformFilter
-        setPlatform={props.setPlatform}
-        selectedPlatform={props.selectedPlatform}
+        setPlatform={ctx.setPlatform}
+        selectedPlatform={ctx.selectedPlatform}
       />
       <div>
-        {props.searchedGame ? (
+        {ctx.searchedGame ? (
           <p>
-            Jeu recherché : <b>"{props.searchedGame}"</b>
+            Jeu recherché : <b>"{ctx.searchedGame}"</b>
           </p>
         ) : (
           <h1>Les nouveautés</h1>
         )}
       </div>
       <div className={style["results-grid"]}>
-        {(props.results &&
-          props.selectedPlatform !== "" &&
-          props.results
+        {(ctx.results &&
+          ctx.selectedPlatform !== "" &&
+          ctx.results
             .filter((result) =>
               result.parent_platforms
                 .map((parent_platform) => parent_platform.platform.name)
-                .includes(props.selectedPlatform)
+                .includes(ctx.selectedPlatform)
             )
             .map((result) => {
               return <CardGame key={Math.random().toString()} game={result} />;
             })) ||
-          (props.selectedPlatform === "" &&
-            props.results.map((result) => {
+          (ctx.selectedPlatform === "" &&
+            ctx.results.map((result) => {
               return <CardGame key={Math.random().toString()} game={result} />;
             }))}
       </div>
-      {props.pageCount < 3 && <button onClick={loadMore}>Load more</button>}
+      {ctx.pageCount < 3 && <button onClick={loadMore}>Load more</button>}
     </>
   );
 }

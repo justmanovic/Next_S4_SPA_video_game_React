@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./Header.module.css";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import MyContext from "../Context";
 
 const KEY = "ee16de9559db45799581e016de56efca";
 
-function Header(props) {
+function Header() {
+  const ctx = useContext(MyContext);
   const [searchedItem, setSearchedItem] = useState("");
   let history = useHistory();
 
@@ -12,7 +14,7 @@ function Header(props) {
     e.preventDefault();
     console.log("SUBMIT");
     console.log(searchedItem);
-    props.setSearchedGame(searchedItem);
+    ctx.setSearchedGame(searchedItem);
     history.push("/");
   };
 
@@ -21,8 +23,8 @@ function Header(props) {
   };
 
   const resetSearch = () => {
-    props.setSearchedGame("");
-    props.setPlatform("");
+    ctx.setSearchedGame("");
+    ctx.setPlatform("");
   };
 
   return (

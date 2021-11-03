@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
 import { useState, useEffect } from "react";
+import MyContext from "./Context";
 const KEY = "ee16de9559db45799581e016de56efca";
 
 function App() {
@@ -27,39 +28,34 @@ function App() {
     const res = await fetch(finalURL);
     const data = await res.json();
     setResults((prev) => [...prev, ...data.results]);
-    // setResults(data.results);
   };
 
   return (
-    <>
+    <MyContext.Provider
+      value={{
+        fetchList: fetchList,
+        pageCount: pageCount,
+        results: results,
+        searchedGame: searchedGame,
+        selectedPlatform: selectedPlatform,
+        setPageCount: setPageCount,
+        setPlatform: setPlatform,
+        setResults: setResults,
+        setSearchedGame: setSearchedGame,
+      }}
+    >
       <Router>
-        <Header
-          results={results}
-          setResults={setResults}
-          searchedGame={searchedGame}
-          setSearchedGame={setSearchedGame}
-          fetchList={fetchList}
-          setPlatform={setPlatform}
-          selectedPlatform={selectedPlatform}
-        />
+        <Header />
         <Switch>
           <Route path="/" exact>
-            <Home
-              searchedGame={searchedGame}
-              results={results}
-              fetchList={fetchList}
-              pageCount={pageCount}
-              setPageCount={setPageCount}
-              setPlatform={setPlatform}
-              selectedPlatform={selectedPlatform}
-            />
+            <Home />
           </Route>
           <Route path="/details">
             <Details />
           </Route>
         </Switch>
       </Router>
-    </>
+    </MyContext.Provider>
   );
 }
 

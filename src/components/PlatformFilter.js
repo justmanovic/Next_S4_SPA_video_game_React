@@ -1,16 +1,18 @@
-import React from "react";
+import { useContext } from "react";
+import MyContext from "../Context";
 import style from "./PlatformFilter.module.css";
 
-const PlatformFilter = (props) => {
+const PlatformFilter = () => {
+  const ctx = useContext(MyContext);
   function selectPlatform(platform) {
-    props.setPlatform(platform);
+    ctx.setPlatform(platform);
   }
 
   return (
     <div>
       <select
         onChange={(e) => selectPlatform(e.target.value)}
-        value={props.selectedPlatform}
+        value={ctx.selectedPlatform}
       >
         <option value="">Sélectionnez une console</option>
         <option value="PlayStation">PlayStation</option>
